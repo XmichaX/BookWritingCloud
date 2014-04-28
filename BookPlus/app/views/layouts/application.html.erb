@@ -6,30 +6,61 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+<style>
+    ul {
+        list-style-type: none;
+        float: right;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
 
+    li {
+        float: left;
+    }
+
+    a {
+        display: block;
+        width: 60px;
+        background-color: #dddddd;
+    }
+</style>
+<meta charset="utf-8"/>
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<title>BookPlus</title>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="application.css" rel="stylesheet">
+</head>
 <body>
-	<div class="applicationheader">
-		<h1>Book Plus</h1>
+<span class="debug"><%= params %></span>
+
+<p class="notice"><%= notice %></p>
+<%= render 'layouts/signin_widget' %>
 
 
-	</div>
-	<div class="applicationbody ">
+<div class="container">
+  <%= yield %>
+</div>
+<!-- .container-->
 
-		<div id="notificationbar" class="notificationbar ui-corner-bottom"></div>
+<aside class="left-sidebar">
 
-		<div class="navigation ui-corner-all">
-			<%= render "home/navigation" %>
+  <aside class="right-sidebar">
 
+  </aside>
+  <!-- .right-sidebar -->
 
-		</div>
+  </div><!-- .middle-->
 
-		<div class="page ui-corner-all">
-			<div id="Book_Plus_dialog" title="BookPlus Dialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable">
+  <footer class="footer">
+    <p class="alert"><%= alert %></p>
+  </footer>
+  <!-- .footer -->
 
-			</div>
-			<%= yield %>
-		</div>
-	</div>
-
+  </div><!-- .wrapper -->
 </body>
 </html>
+
+
