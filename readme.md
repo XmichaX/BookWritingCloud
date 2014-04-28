@@ -7,3 +7,8 @@
 
 ### Additional Gems reqired
 * devise (3.2.4)
+* 
+
+###
+Aufpassen!!! .idea nicht hochladen 
+We want to avoid committing the .idea directory and the .rvmrc file. (Working alone I would add the .rvmrc file to the repository.)
