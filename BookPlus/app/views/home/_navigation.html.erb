@@ -1,0 +1,30 @@
+
+
+<ul class="menu ui-menu ui-widget ui-widget-content ui-corner-all" aria-activedescendant="ui-id-11" role="menu">
+
+
+
+  <%= render(partial: "home/menu_item", locals: {
+          caption: "Overview",
+          url: root_url
+  })%>
+
+ <%= render(partial: "home/menu_item", locals: {
+          caption: "Profile",
+          url: "home/profile"
+  })%>
+
+  <%= render(partial: "home/menu_item", locals: {
+          caption: "Books",
+          url: books_path
+  })%>
+
+
+  <%= render(partial: 'home/menu_item', locals: {
+          caption: "add new book",
+          url: new_book_path
+  })%>
+
+
+
+</ul>

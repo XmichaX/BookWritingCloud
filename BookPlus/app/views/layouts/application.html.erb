@@ -6,9 +6,30 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<%= yield %>
+<body>
+	<div class="applicationheader">
+		<h1>Book Plus</h1>
+
+
+	</div>
+	<div class="applicationbody ">
+
+		<div id="notificationbar" class="notificationbar ui-corner-bottom"></div>
+
+		<div class="navigation ui-corner-all">
+			<%= render "home/navigation" %>
+
+
+		</div>
+
+		<div class="page ui-corner-all">
+			<div id="Book_Plus_dialog" title="BookPlus Dialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable">
+
+			</div>
+			<%= yield %>
+		</div>
+	</div>
 
 </body>
 </html>

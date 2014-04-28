@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(:version => 20140414122859) do
 
   create_table "books", :force => true do |t|
-    t.string "user"
-    t.string "title"
-    t.text "chunk"
+    t.string   "user"
+    t.string   "title"
+    t.text     "chunk"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
