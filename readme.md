@@ -5,4 +5,5 @@
 * Thais Schlee-Gumaraes
 * Beate Jost
 
-
+### Additional Gems reqired
+* devise (3.2.4)
