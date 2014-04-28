@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+.debug {
+    background-color: #FFFF66;
+    padding: 6px;
+    marging: 6px
+}

@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
   attr_accessible :chunk, :title, :user
-  validates :user, :presence => true
+  has_many :users
   validates :title, :presence => true
+  validates :user, :presence => true
 end

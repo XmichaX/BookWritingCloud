@@ -6,9 +6,61 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+<style>
+    ul {
+        list-style-type: none;
+        float: right;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    li {
+        float: left;
+    }
+
+    a {
+        display: block;
+        width: 60px;
+        background-color: #dddddd;
+    }
+</style>
+<meta charset="utf-8"/>
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<title>BookPlus</title>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="application.css" rel="stylesheet">
+</head>
 <body>
+<span class="debug"><%= params %></span>
 
-<%= yield %>
+<p class="notice"><%= notice %></p>
+<%= render 'layouts/signin_widget' %>
 
+
+<div class="container">
+  <%= yield %>
+</div>
+<!-- .container-->
+
+<aside class="left-sidebar">
+
+  <aside class="right-sidebar">
+
+  </aside>
+  <!-- .right-sidebar -->
+
+  </div><!-- .middle-->
+
+  <footer class="footer">
+    <p class="alert"><%= alert %></p>
+  </footer>
+  <!-- .footer -->
+
+  </div><!-- .wrapper -->
 </body>
 </html>
+
+

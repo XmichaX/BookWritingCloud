@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_filter :authenticate_user!, except: [:index]
   # GET /books
   # GET /books.json
   def index
@@ -11,7 +12,8 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1
-  # GET /books/1.json
+  # GET /books/1
+  # json
   def show
     @book = Book.find(params[:id])
 
