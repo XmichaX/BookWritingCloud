@@ -9,10 +9,15 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap.min
  *= require_tree .
  */
 .debug {
     background-color: #FFFF66;
     padding: 6px;
     marging: 6px
+}
+
+#bp_nav_top {
+    margin-bottom: 15px;
 }
