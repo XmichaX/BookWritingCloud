@@ -6,12 +6,15 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
+</head>
+
 <body>
 <span class="debug"><%= params %></span>
 
-<div class="application_header">
+
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="bp_nav_top">
   <div class="container">
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -21,6 +24,7 @@
       </button>
       <a class="navbar-brand" href="#">BookPlus</a>
     </div>
+
     <div class="navbar-collapse collapse">
       <form class="navbar-form navbar-right" role="form">
         <div class="form-group">
@@ -32,39 +36,32 @@
         <button type="submit" class="btn btn-success">Sign in</button>
       </form>
     </div><!--/.navbar-collapse -->
+
+
   </div>
 </div>
 
 
+<!-- Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <ul id="sidebar" class="nav nav-stacked affix">
+        <%= render "home/navigation" %>
+
+      </ul>
+    </div>
 
 
-	</div>
+    <div class="col-sm-9">
 
-	<div class="application_body ">
-
-		<div class="navigation ui-corner-all">
-			<%= render "home/navigation" %>
+      <%= yield %>
 
 
-		</div>
+    </div>
+  </div>
+</div>
 
-		<div class="page ui-corner-all">
-
-			<%= yield %>
-		</div>
-	</div>
-
-	</br style="clear:both;">
-
-	<div class="application_footer">
-
-
-			<% if notice %>
-			    <div id="notice" ><%= notice %></div>
-			<% elsif alert %>
-			    <div id="alert" ><%= alert %></div>
-			<% end %>
-	</div>
 
 </body>
 </html>

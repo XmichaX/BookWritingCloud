@@ -8,23 +8,23 @@
           caption: "Overview",
           url: root_url
   })%>
-
- <%= render(partial: "home/menu_item", locals: {
+  <br>
+  <%= render(partial: "home/menu_item", locals: {
           caption: "Profile",
           url: "home/profile"
   })%>
-
+  <br>
   <%= render(partial: "home/menu_item", locals: {
           caption: "Books",
           url: books_path
   })%>
 
-
+  <br>
   <%= render(partial: 'home/menu_item', locals: {
-          caption: "add new book",
+          caption: "add book",
           url: new_book_path
   })%>
 
-
+  <br>
 
 </ul>

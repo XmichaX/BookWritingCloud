@@ -39,27 +39,6 @@ a {
     width: 60px;
 }
 
-.applicationbody {
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 15%;
-    padding-top: 50px;
-    padding-bottom: 30px;
-    float: left;
-    overflow: visible;
-    position: relative;
-}
-
-.applicationfooter {
-    width: 100%;
-    height: 25px;
-    bottom: 0;
-    left: 0px;
-    position: fixed;
-    background-color: #585858;
-    z-index: 1000;
-}
 
 .navigation {
     background-color: #585858; /* tuerkis */
@@ -71,4 +50,30 @@ a {
     position: fixed;
     z-index: 1000;
 
+}
+
+body {
+    padding-top: 65px;
+}
+
+@media (min-width: 979px) {
+
+    #midCol.affix-top {
+        position: fixed;
+        width: 265px;
+        margin-right: 10px;
+
+    }
+
+    #midCol.affix {
+        position: static;
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 767px) {
+    .affix, .affix-top {
+        position: fixed;
+    }
 }
