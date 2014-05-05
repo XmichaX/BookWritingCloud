@@ -1,6 +1,6 @@
 BookPlus::Application.routes.draw do
-  devise_for :users
 
+  devise_for :users
   resources :books
 
   root :to => 'home#index'
@@ -21,16 +21,16 @@ BookPlus::Application.routes.draw do
   #   resources :products
 
   # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  resources :books do
+    member do
+      put 'addMe'
+      put 'deleteMe'
+    end
+
+    collection do
+
+    end
+  end
 
   # Sample resource route with sub-resources:
   #   resources :products do

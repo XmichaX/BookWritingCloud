@@ -12,20 +12,15 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :user %>
-      <br/>
-      <%= f.text_field :user, :value => current_user.full_name, readonly: true %>
-    </div>
-    <div class="field">
       <%= f.label :title %>
       <br/>
       <%= f.text_field :title %>
     </div>
     <div class="field">
-      <%= f.label :chunk %>
-      <br/>
-      <%= f.text_area :chunk %>
-    </div>
+      <% @book.users.each do |u| %>
+          <%= u.full_name %>, </br>
+      <% end %></div>
+
     <div class="actions">
       <%= f.submit %>
     </div>

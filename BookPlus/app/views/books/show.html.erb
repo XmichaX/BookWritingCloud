@@ -1,20 +1,16 @@
-<p id="notice"><%= notice %></p>
+<h1>Books</h1>
 
 <p>
-  <b>User:</b>
-  <%= @book.user %>
-</p>
-
-<p>
-  <b>Title:</b>
+  <b>Title:</b></br>
   <%= @book.title %>
 </p>
-
 <p>
-  <b>Chunk:</b>
-  <%= @book.chunk %>
+  <b>Authors:</b></br>
+  <% @book.users.each do |u| %>
+      <%= u.full_name %></br>
+  <% end %></td>
 </p>
 
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Edit', edit_book_path(@book) %>
 <%= link_to 'Back', books_path %>
