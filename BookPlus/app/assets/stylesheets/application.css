@@ -21,3 +21,20 @@
 #bp_nav_top {
     margin-bottom: 15px;
 }
+
+ul {
+    list-style-type: none;
+    float: right;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+a {
+    display: block;
+    width: 60px;
+}
