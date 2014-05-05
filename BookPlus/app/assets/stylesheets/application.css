@@ -19,3 +19,59 @@
 #bp_nav_top {
     margin-bottom: 15px;
 }
+
+ul {
+    list-style-type: none;
+    float: right;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+a {
+    display: block;
+    width: 60px;
+}
+
+
+.navigation {
+    background-color: #585858; /* tuerkis */
+    float: left;
+    width: 15%;
+    min-height: 100%;
+    height: 100%;
+    left: 0px;
+    position: fixed;
+    z-index: 1000;
+
+}
+
+body {
+    padding-top: 65px;
+}
+
+@media (min-width: 979px) {
+
+    #midCol.affix-top {
+        position: fixed;
+        width: 265px;
+        margin-right: 10px;
+
+    }
+
+    #midCol.affix {
+        position: static;
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 767px) {
+    .affix, .affix-top {
+        position: fixed;
+    }
+}
