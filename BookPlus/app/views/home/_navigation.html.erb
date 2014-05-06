@@ -1,5 +1,3 @@
-
-
 <ul class="menu ui-menu ui-widget ui-widget-content ui-corner-all" aria-activedescendant="ui-id-11" role="menu">
   <h2 style="margin: 3px 0px 4px 4px;"></h2>
 
@@ -7,23 +5,25 @@
   <%= render(partial: "home/menu_item", locals: {
           caption: "Overview",
           url: root_url
-  })%>
+  }) %>
   <br>
-  <%= render(partial: "home/menu_item", locals: {
-          caption: "Profile",
-          url: edit_user_registration_path
-  })%>
-  <br>
+  <% if user_signed_in? %>
+      <%= render(partial: "home/menu_item", locals: {
+              caption: "Profile",
+              url: edit_user_registration_path
+      }) %>
+      <br>
+  <% end %>
   <%= render(partial: "home/menu_item", locals: {
           caption: "Books",
           url: books_path
-  })%>
+  }) %>
 
   <br>
   <%= render(partial: 'home/menu_item', locals: {
           caption: "add book",
           url: new_book_path
-  })%>
+  }) %>
 
   <br>
 
