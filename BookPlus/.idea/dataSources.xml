@@ -4,7 +4,13 @@
     <data-source source="LOCAL" name="Rails BookPlus: development" uuid="a10b6607-612e-4ea9-a693-e089c7fc69ca">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\Beate\webengineering\BookWritingCloud\BookPlus\db\development.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails BookPlus: test" uuid="0e7e20e2-bfd9-4547-9d60-0c9608665560">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Beate\webengineering\BookWritingCloud\BookPlus\db\test.sqlite3</jdbc-url>
       <libraries />
     </data-source>
   </component>
