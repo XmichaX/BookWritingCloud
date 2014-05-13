@@ -1,5 +1,8 @@
 BookPlus::Application.routes.draw do
 
+  resources :chunks
+
+
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :users

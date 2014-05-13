@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @chunk.title %>
+</p>
+
+<p>
+  <b>Section:</b>
+  <%= @chunk.section %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @chunk.content %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @chunk.user %>
+</p>
+
+<p>
+  <b>Book:</b>
+  <%= @chunk.book %>
+</p>
+
+
+<%= link_to 'Edit', edit_chunk_path(@chunk) %> |
+<%= link_to 'Back', chunks_path %>
