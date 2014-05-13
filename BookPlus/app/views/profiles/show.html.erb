@@ -1,0 +1,15 @@
+<div class="col-lg-12">
+  <h2> Your Profile</h2>
+
+  <%= @user_profile %>
+
+  <br>
+  <%= @user_profile_books %>
+
+  <%= render(partial: "layouts/menu_item", locals: {
+          caption: "Edit your account",
+          url: edit_user_registration_path
+  }) %>
+
+</div>
+

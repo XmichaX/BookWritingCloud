@@ -1,16 +1,22 @@
-<h1>Books</h1>
+<div class="col-lg-12">
+  <h1>Books</h1>
 
-<p>
-  <b>Title:</b></br>
-  <%= @book.title %>
-</p>
-<p>
-  <b>Authors:</b></br>
-  <% @book.users.each do |u| %>
-      <%= u.full_name %></br>
-  <% end %></td>
-</p>
+  <p>
+    <b>Title:</b></br>
+    <%= @book.title %>
+  </p>
+
+  <p>
+    <b>Authors:</b></br>
+    <% @book.users.each do |u| %>
+        <%= u.full_name %></br>
+    <% end %></td>
+  </p>
 
 
-<%= link_to 'Edit', edit_book_path(@book) %>
-<%= link_to 'Back', books_path %>
+  <%= link_to 'Edit', edit_book_path(@book) %>
+  <%= link_to 'Back', books_path %>
+</div>
+
+
+

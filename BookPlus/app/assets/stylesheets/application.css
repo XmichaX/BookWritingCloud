@@ -9,69 +9,95 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap.min
+ *= require bootstrap
  *= require_tree .
  */
-.debug {
-    background-color: #FFFF66;
-}
-
-#bp_nav_top {
-    margin-bottom: 15px;
-}
-
-ul {
-    list-style-type: none;
-    float: right;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-li {
-    float: left;
-}
-
-a {
-    display: block;
-    width: 60px;
-}
-
-
-.navigation {
-    background-color: #585858; /* tuerkis */
-    float: left;
-    width: 15%;
-    min-height: 100%;
-    height: 100%;
-    left: 0px;
-    position: fixed;
-    z-index: 1000;
-
-}
 
 body {
-    padding-top: 65px;
+    margin-top: 50px;
 }
 
-@media (min-width: 979px) {
+#wrapper {
+    padding-left: 0;
+}
 
-    #midCol.affix-top {
-        position: fixed;
-        width: 265px;
-        margin-right: 10px;
+#page-wrapper {
+    width: 100%;
+    padding: 5px 15px;
+}
 
+/* Edit Below to Customize Widths > 768px */
+@media (min-width: 768px) {
+
+    /* Wrappers */
+    #wrapper {
+        padding-left: 225px;
     }
 
-    #midCol.affix {
-        position: static;
+    #page-wrapper {
         width: 100%;
+        padding: 50px 50px 50px 50px;
     }
 
-}
-
-@media (min-width: 767px) {
-    .affix, .affix-top {
+    /* Side Nav */
+    .side-nav {
+        margin-left: -225px;
+        /*  left: 225px;*/
+        width: 225px;
         position: fixed;
+        top: 50px;
+        height: 100%;
+        border-radius: 0;
+        border: none;
+        background-color: #222222;
+        overflow-y: auto;
     }
+
+    /* Bootstrap Default Overrides - Customized Dropdowns for the Side Nav */
+    .side-nav > li.dropdown > ul.dropdown-menu {
+        position: relative;
+        min-width: 225px;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+
+    .side-nav > li.dropdown > ul.dropdown-menu > li > a {
+        color: #999999;
+        padding: 15px 15px 15px 25px;
+    }
+
+    .side-nav > li.dropdown > ul.dropdown-menu > li > a:hover,
+    .side-nav > li.dropdown > ul.dropdown-menu > li > a.active,
+    .side-nav > li.dropdown > ul.dropdown-menu > li > a:focus {
+        color: #fff;
+        background-color: #080808;
+    }
+
+    .side-nav > li > a {
+        width: 225px;
+    }
+
+    .navbar-inverse .navbar-nav > li > a:hover,
+    .navbar-inverse .navbar-nav > li > a:focus {
+        background-color: #080808;
+    }
+
+    /* Nav Messages */
+    .messages-dropdown .dropdown-menu {
+        min-width: 300px;
+    }
+
+    .messages-dropdown .dropdown-menu li a {
+        white-space: normal;
+    }
+
 }
+
+
+
+

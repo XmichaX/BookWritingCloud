@@ -1,12 +1,15 @@
-<h1>Editing book</h1>
+<div class="col-lg-12">
+  <h1>Editing book</h1>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<div class="actions">
-  <%= button_to 'addMe', addMe_book_path(@book), :method => "put" %>
+  <div class="actions">
+    <%= button_to 'addMe', addMe_book_path(@book), :method => "put" %>
+  </div>
+  <div class="actions">
+    <%= button_to 'deleteMe', deleteMe_book_path(@book), :method => "put" %>
+  </div>
+  <%= link_to 'Show', @book %>
+  <%= link_to 'Back', books_path %>
+
 </div>
-<div class="actions">
-  <%= button_to 'deleteMe', deleteMe_book_path(@book), :method => "put" %>
-</div>
-<%= link_to 'Show', @book %>
-<%= link_to 'Back', books_path %>

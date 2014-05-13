@@ -1,7 +1,11 @@
 BookPlus::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
+
   devise_for :users
   resources :books
+
+  get "profiles/show"
 
   root :to => 'home#index'
 

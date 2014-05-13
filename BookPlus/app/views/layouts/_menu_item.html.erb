@@ -1,15 +1,15 @@
 <li class="ui-menu-item" role="presentation">
   <%
      html_opts = {}
-     (local_assigns[:opts] || {}).each do |k,v|
+     (local_assigns[:opts] || {}).each do |k, v|
        html_opts[k] = [v].flatten
      end
      html_opts[:class] << "ui-corner-all" if html_opts.include?(:class)
      html_opts[:class] = ["ui-corner-all"] if !html_opts.include?(:class)
      html_opts[:role] = ["menuitem"] if !html_opts.include?(:role)
-     html_opts.each do |k,v|
+     html_opts.each do |k, v|
        html_opts[k] = v.flatten.uniq.join(" ")
      end
   %>
-  <%= link_to caption, url, html_opts%>
+  <%= link_to caption, url, html_opts %>
 </li>
