@@ -1,11 +1,13 @@
 BookPlus::Application.routes.draw do
 
+  # Startseite der Applikation
   root :to => 'home#index'
 
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :users
 
+  # verschachtelte Ressourcen
   resources :books do
     resources :chunks
   end

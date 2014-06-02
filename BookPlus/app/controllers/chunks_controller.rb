@@ -3,6 +3,7 @@ class ChunksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_book
 
+
   # GET /chunks
   # GET /chunks.json
   def index

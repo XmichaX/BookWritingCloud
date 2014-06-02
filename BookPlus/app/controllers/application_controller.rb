@@ -6,10 +6,19 @@ class ApplicationController < ActionController::Base
     books_path
   end
 
-  def render_check_template
-    if params[:render_template] == 'false'
-      render layout: false
-    end
+  def render_check_template(action=params[:action])
+    render action, layout: params[:render_template] != 'false'
   end
 
+
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :first_name << :last_name
+  end
 end
+
+
+

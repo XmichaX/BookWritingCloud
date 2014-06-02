@@ -16,8 +16,9 @@ class Chunk < ActiveRecord::Base
   validates :position, :uniqueness => {:scope => :book_id}
   validate :handle_conflict, only: :update
 
+
   def username
-    user.username
+    user.email
   end
 
   def sliced_attributes
