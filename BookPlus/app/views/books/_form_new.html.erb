@@ -46,13 +46,21 @@
         <div class="field">
           <%= f.label :users %>
           <br/>
+          <% if !@users.nil? %>
           <% @users.each do |user| %>
               <div>
                 <%= check_box_tag "book[user_ids][]", user.id %>
                 <%= user.first_name %> <%= user.last_name %>
               </div>
           <% end %>
+
+          <% end %>
         </div>
       </div>
+
+
     </div>
+
+
+
 <% end %>

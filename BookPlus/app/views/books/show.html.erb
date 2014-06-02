@@ -12,15 +12,30 @@
     <h2>Chunks</h2>
 
     <% if @book.has_chunks? %>
-        <div id="books_tree">
-          <li id="book<%= @book.id %>" class="book" data-edit_path="<%= edit_book_path(@book) %>" data-new_chunk_path="<%= new_book_chunk_path(@book) %>"><%= link_to "#{@book.title} (#{@book.edition})", @book %>
-            <ul>
-              <% @book.chunks.each do |chunk| %>
-                  <li id="chunk<%= chunk.id %>" class="chunk"><%= link_to chunk.title, edit_book_chunk_path(@book, chunk) %></li>
-              <% end %>
-            </ul>
-          </li>
-        </div>
+        <table>
+          <tr>
+            <th><%= Chunk.human_attribute_name(:title) %></th>
+            <th><%= Chunk.human_attribute_name(:section) %></th>
+            <th><%= Chunk.human_attribute_name(:user) %></th>
+            <th><%= Chunk.human_attribute_name(:version) %></th>
+            <% unless @book.closed? %>
+                <th></th>
+            <% end %>
+          </tr>
+          <% @book.chunks.each do |chunk| %>
+              <tr>
+                <td><%= link_to chunk.title, @book.closed? ? book_chunk_path(@book, chunk) : edit_book_chunk_path(@book, chunk) %></td>
+                <td><%= chunk.section %></td>
+                <td><%= chunk.username %></td>
+                <td><%= chunk.versions.last.id unless chunk.versions == nil %></td>
+                <% unless @book.closed? %>
+                    <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
+                <% end %>
+              </tr>
+          <% end %>
+        </table>
+
+
     <% else %>
         <p>no chunks avaiables</p>
     <% end %>

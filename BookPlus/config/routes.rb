@@ -1,7 +1,7 @@
 BookPlus::Application.routes.draw do
 
   # Startseite der Applikation
-  root :to => 'home#index'
+  root :to => 'welcome#index'
 
   mount Ckeditor::Engine => '/ckeditor'
 
