@@ -9,24 +9,25 @@ gem 'rails', '3.2.17'
 gem 'sqlite3'
 
 gem "ckeditor" # WYSIWYG-Editor
-
 gem 'paper_trail', '~> 2' # Wird von Paperclip (s.u.) benötigt
 gem 'paperclip', '~> 3.0' # Versionierung
-
+gem 'devise', '~> 3.2.4' # Benutzermanagement
+gem 'strong_parameters'
+gem 'jstree-rails', :git => 'git://github.com/tristanm/jstree-rails.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'devise', '~> 3.2.4'
-  gem 'strong_parameters'
+
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
+
 
 gem 'jquery-rails'
 

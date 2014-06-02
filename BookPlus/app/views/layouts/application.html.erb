@@ -1,82 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BookPlus</title>
+  <title>UltraBookOnline</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
 </head>
-
 <body>
-<div id="wrapper">
-  <!-- Sidebar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" <%= link_to "BookPlus", root_path %></a>
-    </div>
 
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-collapse">
-
-      <ul class="nav navbar-nav side-nav">
-        <li class="active"><a <%= link_to "BookPlus", root_path %></a></li>
-        <%= render "layouts/navigation" %>
-      </ul>
-
-
-
-      <% if user_signed_in? %>
-
-          <div><%= button_to "Sign Out", destroy_user_session_path, method: "delete", :class => "nav navbar-nav navbar-right form-group btn btn-default navbar-btn" %></div>
-          <div class="nav navbar-nav navbar-right navbar-text">You are logged in
-            as <%= current_user.full_name %>&nbsp;&nbsp;</div>
-
-      <% else %>
-
-          <div><%= button_to "Sign up", new_user_registration_path, method: "get", :class => "nav navbar-nav navbar-right form-group btn btn-default navbar-btn" %></div>
-
-          <%= form_for(resource, as: resource_name, :html => {:class => "navbar-form navbar-right", :role => "form"}, url: session_path(resource_name)) do |f| %>
-              <div class="form-group">
-                <%= f.email_field :email, autofocus: true, :placeholder => "Email", :class => "form-control" %>
-              </div>
-              <div class="form-group">
-                <%= f.password_field :password, autocomplete: "off", :placeholder => "Password", :class => "form-control" %>
-              </div>
-              <%= button_tag "login", :class => "btn btn-success", :type => "submit" %>
-          <% end %>
-
-      <% end %>
-
-
-    </div>
-    <!-- /.navbar-collapse -->
-  </nav>
-
-
-  <div id="page-wrapper">
-
-    <div class="row">
-      <%= yield %>
-
-
-    </div>
-    <!-- /.row -->
-
+<!-- Navbar on each page -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">BookPlus</a>
   </div>
-  <!-- /#page-wrapper -->
-
+  <div class="navbar-collapse collapse">
+    <div class="navbar-form navbar-right">
+      <% if user_signed_in? %>
+          <div class="form-group white"><%= current_user.email %></div>
+          <%= link_to(raw("Logout&nbsp;<span class=\"glyphicon glyphicon-log-out\"></span>"), destroy_user_session_path, :method => :delete, :class => 'btn btn-success') %>
+      <% else %>
+          <%= form_for(:user, :url => session_path(:user), :html => {:class => "navbar-right"}) do |f| %>
+              <%= f.email_field :email, autofocus: true, :placeholder => "Email", :class => "form-control" %>
+              <%= f.password_field :password, autocomplete: "off", :placeholder => "Password", :class => "form-control" %>
+              <%= button_tag raw("Login&nbsp;<span class=\"glyphicon glyphicon-log-in\"></span>"), :class => "btn btn-success", :type => "submit" %>
+              <%= link_to "Sign up", new_user_registration_path, method: "get", :class => "btn btn-primary" %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
-<!-- /#wrapper -->
 
+<p class="notice"><%= notice %></p>
+
+<p class="alert"><%= alert %></p>
+
+<%= yield %>
 
 </body>
 </html>

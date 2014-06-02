@@ -1,16 +1,14 @@
 BookPlus::Application.routes.draw do
 
-  resources :chunks
-
+  root :to => 'home#index'
 
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :users
-  resources :books
 
-  get "profiles/show"
-
-  root :to => 'home#index'
+  resources :books do
+    resources :chunks
+  end
 
 
   # The priority is based upon order of creation:
@@ -28,16 +26,16 @@ BookPlus::Application.routes.draw do
   #   resources :products
 
   # Sample resource route with options:
-  resources :books do
-    member do
-      put 'addMe'
-      put 'deleteMe'
-    end
-
-    collection do
-
-    end
-  end
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
 
   # Sample resource route with sub-resources:
   #   resources :products do

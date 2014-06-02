@@ -1,7 +1,9 @@
 class Book < ActiveRecord::Base
-  attr_accessible :title, :user_ids
+
   has_and_belongs_to_many :users
   has_many :chunks
+
+  attr_accessible :abstract, :edition, :genre, :published, :tags, :title, :user_ids
 
   before_destroy :destroy_chunks
 
@@ -14,4 +16,6 @@ class Book < ActiveRecord::Base
       chunk.destroy
     end
   end
+
 end
+

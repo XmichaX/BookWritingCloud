@@ -1,4 +1,8 @@
 class ChunksController < ApplicationController
+
+  before_filter :authenticate_user!
+  before_filter :find_book
+
   # GET /chunks
   # GET /chunks.json
   def index
@@ -40,11 +44,12 @@ class ChunksController < ApplicationController
   # POST /chunks
   # POST /chunks.json
   def create
-    @chunk = Chunk.new(chunk_params)
+    @chunk = Chunk.new(params[:chunk])
+    @chunk.book = @book
 
     respond_to do |format|
       if @chunk.save
-        format.html { redirect_to @chunk, notice: 'Chunk was successfully created.' }
+        format.html { redirect_to @book, notice: 'Chunk was successfully created.' }
         format.json { render json: @chunk, status: :created, location: @chunk }
       else
         format.html { render action: "new" }
@@ -53,14 +58,14 @@ class ChunksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /chunks/1
-  # PATCH/PUT /chunks/1.json
+  # PUT /chunks/1
+  # PUT /chunks/1.json
   def update
     @chunk = Chunk.find(params[:id])
 
     respond_to do |format|
-      if @chunk.update_attributes(chunk_params)
-        format.html { redirect_to @chunk, notice: 'Chunk was successfully updated.' }
+      if @chunk.update_attributes(params[:chunk])
+        format.html { redirect_to @book, notice: 'Chunk was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,17 +81,14 @@ class ChunksController < ApplicationController
     @chunk.destroy
 
     respond_to do |format|
-      format.html { redirect_to chunks_url }
+      format.html { redirect_to @book }
       format.json { head :no_content }
     end
   end
 
   private
+  def find_book
+    @book = Book.find(params[:book_id])
+  end
 
-    # Use this method to whitelist the permissible parameters. Example:
-    # params.require(:person).permit(:name, :age)
-    # Also, you can specialize this method with per-user checking of permissible attributes.
-    def chunk_params
-      params.require(:chunk).permit(:book, :content, :section, :title, :user)
-    end
 end
