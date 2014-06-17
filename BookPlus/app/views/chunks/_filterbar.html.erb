@@ -5,7 +5,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
 
-    <a class="navbar-brand" href="#">Filter:</a>
+      <a class="navbar-brand" href="#">Filter:</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -15,8 +15,7 @@
         <button type="submit" class="btn btn-default">apply</button>
       </div>
       <div class="navbar-form navbar-left" role="add">
-        <%= link_to(raw('create new book'), "#myModal", :class => "btn btn-primary", :data => {:toggle => "modal"}) %>
-
+        <%= link_to(raw('create new chunk'), new_book_chunk_path(@book), :class => "btn btn-primary", :data => {:book => @book}) %>
       </div>
     </div>
 

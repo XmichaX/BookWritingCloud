@@ -1,60 +1,101 @@
 <div class="row">
 
-  <div class="col-lg-2 col-sm-2">
-    <div class="well">
-      <div style="float: left">
-        <span class="glyphicon glyphicon-book"></span>&nbsp;<span class="book-title"><%= @book.title %></span></div>
-      <div class="text-right book-info">
-        <abbr title="click to show main information"><span class="glyphicon glyphicon-info-sign"></span></abbr></div>
-    </div>
-    <hr class="featurette-divider">
+  <div class="row">
+    <div class="col-lg-6 text-center">
+      <div class="panel panel-default">
+        <div class="panel-body">
 
-    <h2>Chunks</h2>
+          <h1><%= @book.title %></h1>
 
-    <% if @book.has_chunks? %>
-        <table>
-          <tr>
-            <th><%= Chunk.human_attribute_name(:title) %></th>
-            <th><%= Chunk.human_attribute_name(:section) %></th>
-            <th><%= Chunk.human_attribute_name(:user) %></th>
-            <th><%= Chunk.human_attribute_name(:version) %></th>
-            <% unless @book.closed? %>
-                <th></th>
-            <% end %>
-          </tr>
-          <% @book.chunks.each do |chunk| %>
-              <tr>
-                <td><%= link_to chunk.title, @book.closed? ? book_chunk_path(@book, chunk) : edit_book_chunk_path(@book, chunk) %></td>
-                <td><%= chunk.section %></td>
-                <td><%= chunk.username %></td>
-                <td><%= chunk.versions.last.id unless chunk.versions == nil %></td>
-                <% unless @book.closed? %>
-                    <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
-                <% end %>
-              </tr>
+          <p>
+            <b><%= Book.human_attribute_name(:edition) %>:</b>
+            <%= @book.edition %>
+          </p>
+
+          <% if @book.published? %>
+              <p>
+                <b><%= Book.human_attribute_name(:published) %>:</b>
+                <%= @book.published %>
+              </p>
           <% end %>
-        </table>
+
+          <p>
+            <b><%= Book.human_attribute_name(:genre) %>:</b>
+            <%= @book.genre %>
+          </p>
+
+          <p>
+            <b><%= Book.human_attribute_name(:tags) %>:</b>
+            <%= @book.tags %>
+          </p>
+
+          <p>
+            <b><%= Book.human_attribute_name(:users) %>:</b>
+            <%= @book.users_list %>
+          </p>
 
 
-    <% else %>
-        <p>no chunks avaiables</p>
-    <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 text-center">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Chunks</h2>
+          <%= render 'chunks/filterbar' %>
+          <% if @book.has_chunks? %>
+              <table>
+                <tr>
+                  <th><%= Chunk.human_attribute_name(:title) %></th>
+                  <th><%= Chunk.human_attribute_name(:section) %></th>
+                  <th><%= Chunk.human_attribute_name(:user) %></th>
+                  <th><%= Chunk.human_attribute_name(:version) %></th>
+                  <% unless @book.closed? %>
+                      <th></th>
+                  <% end %>
+                </tr>
+                <% @book.chunks.each do |chunk| %>
+                    <tr>
+                      <td><%= link_to chunk.title, @book.closed? ? book_chunk_path(@book, chunk) : edit_book_chunk_path(@book, chunk) %></td>
+                      <td><%= chunk.section %></td>
+                      <td><%= chunk.username %></td>
+                      <td><%= chunk.versions.last.id unless chunk.versions == nil %></td>
+                      <% unless @book.closed? %>
+                          <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
+                      <% end %>
+                    </tr>
+                <% end %>
+              </table>
+          <% else %>
+              <p><%= I18n.t('views.chunk.index.empty') %></p>
+          <% end %>
 
-    <hr class="featurette-divider">
+          <br/>
 
-    <ul class="nav nav-pills nav-stacked">
-      <li><%= link_to(raw('<span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Back to books'), books_path) %></li>
-    </ul>
+          <% unless @book.closed? %>
 
+              <%= button_to I18n.t('views.chunk.index.new'), new_book_chunk_path(@book), method: :get %>
+          <% end %>
+
+          <br/><br/>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 text-right">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= @i %>
+          <%= @books %>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- /.row -->
 
-  <div class="col-lg-10 col-sm-2">
-    Test 2
-  </div>
 
 </div>
+</div>
 
-<%= render "books/modal_show" %>
 
 
 

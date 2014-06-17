@@ -15,4 +15,7 @@ module ApplicationHelper
     current_user.books
   end
 
+  def all_users
+    @users ||= User.all
+  end
 end

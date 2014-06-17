@@ -8,8 +8,13 @@ BookPlus::Application.routes.draw do
   devise_for :users
 
   # verschachtelte Ressourcen
+
+
   resources :books do
-    resources :chunks
+    get 'print', :on => :member
+    post 'close', :on => :member
+    get 'new_edition', :on => :member
+    resources :chunks, :except => [:index]
   end
 
 

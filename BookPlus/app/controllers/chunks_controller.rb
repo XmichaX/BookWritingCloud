@@ -29,6 +29,7 @@ class ChunksController < ApplicationController
   # GET /chunks/new
   # GET /chunks/new.json
   def new
+    @users ||= User.all
     @chunk = Chunk.new
 
     respond_to do |format|

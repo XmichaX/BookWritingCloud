@@ -7,8 +7,9 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
+    @users = User.all
     @books = current_user.books
-
+    @i = current_user
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }
@@ -18,6 +19,9 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    @users = User.all
+    @books = current_user.books
+    @i = current_user
     @book = Book.find(params[:id])
 
     respond_to do |format|
@@ -40,6 +44,7 @@ class BooksController < ApplicationController
   # GET /books/new
   # GET /books/new.json
   def new
+    @users = User.all
     @book = Book.new
 
     respond_to do |format|
@@ -162,5 +167,3 @@ class BooksController < ApplicationController
   end
 
 end
-
-

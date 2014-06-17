@@ -1,7 +1,6 @@
 <div class="row">
 
 
-  <%= render 'navigation' %>
 
 
   <div class="col-lg-10 col-sm-11 responsive">
@@ -9,38 +8,33 @@
     <%= render 'books/filterbar' %>
 
     <hr class="featurette-divider">
-
+    ola
+    <%= @i %>
+    <%= @users %>
+    <br>
     <table class="table table-striped books-content">
       <thead>
       <tr>
-        <th>Title</th>
-        <th>Edition</th>
-        <th>Published</th>
-        <th>Genre</th>
-        <th>Tags</th>
-        <th>User</th>
-        <th></th>
+        <th><%= Book.human_attribute_name(:title) %></th>
+        <th><%= Book.human_attribute_name(:edition) %></th>
+        <th><%= Book.human_attribute_name(:published) %></th>
+        <th><%= Book.human_attribute_name(:genre) %></th>
+        <th><%= Book.human_attribute_name(:tags) %></th>
+        <th><%= Book.human_attribute_name(:users) %></th>
       </tr>
       </thead>
       <tbody>
       <% @books.each do |book| %>
           <tr>
-            <td><%= book.title %></td>
+
+            <td><%= link_to book.title, book %></td>
             <td><%= book.edition %></td>
             <td><%= book.published %></td>
             <td><%= book.genre %></td>
             <td><%= book.tags %></td>
-            <td>
-              <% book.users.each do |usr| %>
-                  <%= usr.first_name %> <%= usr.last_name %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to(raw('<span class="glyphicon glyphicon-pencil"></span>'), book) %>
-              &nbsp;&nbsp;&nbsp;
-              <%= link_to(raw('<span class="glyphicon glyphicon-trash"></span>'), book, method: :delete, data: {confirm: 'Are you sure?'}) %>
-            </td>
+            <td><%= book.users_list %></td>
           </tr>
+
       <% end %>
       </tbody>
     </table>
