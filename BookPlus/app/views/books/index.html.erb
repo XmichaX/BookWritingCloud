@@ -1,16 +1,23 @@
-<div class="row">
+<div id="partial-page-wrapper">
 
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1 id="Books">Books</h1>
+      </div>
+    </div>
+  </div>
+  <!-- /.row -->
 
-
-
-  <div class="col-lg-10 col-sm-11 responsive">
+  <div class="col-lg-12 col-sm-11 responsive">
 
     <%= render 'books/filterbar' %>
 
     <hr class="featurette-divider">
+    <%= params %> <br>
     ola
-    <%= @i %>
-    <%= @users %>
+    <%= @i %> <br>
+    users:<%= @users %>
     <br>
     <table class="table table-striped books-content">
       <thead>
@@ -32,13 +39,27 @@
             <td><%= book.published %></td>
             <td><%= book.genre %></td>
             <td><%= book.tags %></td>
-            <td><%= book.users_list %></td>
+            <td><%= book.users_list_real_names %></td>
           </tr>
 
       <% end %>
       </tbody>
     </table>
+
+
+    <hr class="featurette-divider">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-header">
+          <h1 id="Books">Books tree</h1>
+        </div>
+
+        <%= render partial: 'shared/books_tree', :locals => {:books => user_books} %>
+      </div>
+    </div>
+    <!-- /.row -->
+
   </div>
 </div>
-
-<%= render 'overlayNewBook' %>
+</div>

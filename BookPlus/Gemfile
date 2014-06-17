@@ -15,6 +15,12 @@ gem 'devise', '~> 3.2.4' # Benutzermanagement
 gem 'strong_parameters'
 gem 'jstree-rails', :git => 'git://github.com/tristanm/jstree-rails.git'
 
+gem 'rails-i18n' # Internationalisierung für rails
+gem 'devise-i18n' # Internationalisierung für devise
+gem 'devise-i18n-views' # Internationalisierte devise-Views
+gem 'wkhtmltopdf-binary' # PDF-Generierung aus HTML-Daten
+gem 'wicked_pdf' # PDF-Export
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

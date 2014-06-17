@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+=begin
   # GET /users
   # GET /users.json
   def index
@@ -81,5 +81,5 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+=end
 end

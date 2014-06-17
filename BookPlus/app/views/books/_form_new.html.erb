@@ -1,6 +1,5 @@
-<%= form_for(Book.new, remote: true, :html => {:id => "book_new", :"data-type" => 'json'}) do |f| %>
-
-
+<%= form_for(@book) do |f| %>
+    <%= params %> <br>
     <div class="row">
       <div class="col-md-9">
         <div class="field div-left">
@@ -51,22 +50,22 @@
 
           <% @users.each do |user| %>
               <div>
-                <%= check_box_tag "book[user_ids][]", user.id %>
+                <%= check_box_tag "book[user_ids][]", user.id, @book.users.include?(user) %>
                 <%= user.email %>
               </div>
           <% end %>
-
 
         </div>
       </div>
 
 
     </div>
+    <hr class="featurette-divider">
 
     <div class="actions">
-      <%= f.submit %>
+      <%= link_to "Back", books_path, method: "get", :class => "btn btn-primary" %>
+      <%= f.submit :class => "btn btn-primary" %>
     </div>
-
 <% end %>
 
 

@@ -1,9 +1,7 @@
 class Book < ActiveRecord::Base
-
+  attr_accessible :title, :edition, :published, :genre, :abstract, :tags, :user_ids, :closed
   has_and_belongs_to_many :users
   has_many :chunks
-
-  attr_accessible :title, :edition, :published, :genre, :abstract, :tags, :user_ids, :closed
 
 
   validates_presence_of :title, :edition

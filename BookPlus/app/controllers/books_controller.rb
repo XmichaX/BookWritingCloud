@@ -3,13 +3,13 @@ class BooksController < ApplicationController
   layout 'books_and_chunks'
   before_filter :authenticate_user!
   before_filter :find_all_users, :only => [:new, :edit, :new_edition]
-
+  @users = User.all
   # GET /books
   # GET /books.json
   def index
     @users = User.all
     @books = current_user.books
-    @i = current_user
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }
@@ -20,8 +20,6 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @users = User.all
-    @books = current_user.books
-    @i = current_user
     @book = Book.find(params[:id])
 
     respond_to do |format|
@@ -30,7 +28,8 @@ class BooksController < ApplicationController
     end
   end
 
-  def print
+  def export
+    @users = User.all
     @book = Book.find(params[:id])
 
     respond_to do |format|
@@ -55,6 +54,7 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    @users = User.all
     @book = Book.find(params[:id])
 
     unless @book.closed?
@@ -68,6 +68,7 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
+    @users = User.all
     @book = Book.new(params[:book])
 
     old_book_id = session[:old_book_id]
@@ -99,6 +100,7 @@ class BooksController < ApplicationController
   # PUT /books/1
   # PUT /books/1.json
   def update
+    @users = User.all
     @book = Book.find(params[:id])
 
     if params[:update_chunk_order_only] == 'true'
@@ -127,6 +129,7 @@ class BooksController < ApplicationController
   end
 
   def close
+    @users = User.all
     @book = Book.find(params[:id])
 
     respond_to do |format|
@@ -141,6 +144,7 @@ class BooksController < ApplicationController
   end
 
   def new_edition
+    @users = User.all
     old_book = Book.find(params[:id])
     @book = Book.new(old_book.sliced_attributes)
     @book.users = old_book.users
@@ -152,6 +156,7 @@ class BooksController < ApplicationController
 # DELETE /books/1
 # DELETE /books/1.json
   def destroy
+    @users = User.all
     @book = Book.find(params[:id])
     @book.destroy
 

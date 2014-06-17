@@ -11,7 +11,7 @@ BookPlus::Application.routes.draw do
 
 
   resources :books do
-    get 'print', :on => :member
+    get 'export', :on => :member
     post 'close', :on => :member
     get 'new_edition', :on => :member
     resources :chunks, :except => [:index]
