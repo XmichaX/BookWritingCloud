@@ -1,30 +1,77 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
-  <%= @chunk.title %>
-</p>
-
-<p>
-  <b>Section:</b>
-  <%= @chunk.section %>
-</p>
-
-<p>
-  <b>Content:</b>
-  <%= @chunk.content %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @chunk.user %>
-</p>
-
-<p>
-  <b>Book:</b>
-  <%= @chunk.book %>
-</p>
+<div id="partial-page-wrapper">
 
 
-<%= link_to 'Edit', edit_chunk_path(@chunk) %> |
-<%= link_to 'Back', chunks_path %>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1 id="Chunk">Chunk: <%= @chunk.title %></h1>
+      </div>
+    </div>
+  </div>
+  <!-- /.row -->
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <% if @book.has_chunks? %>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped tablesorter">
+              <thead>
+              <tr>
+                <th> id</th>
+                <th> version</th>
+                <th> user</th>
+                <th> create at</th>
+                <th> item_type</th>
+                <th> item_id</th>
+                <th> event</th>
+                <th> object</th>
+                <th> restore</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <% if !@chunk.versions.nil? %>
+                  <% @chunk.versions.scoped.each do |version| %>
+                      <tr>
+                        <td><%= version.id %></td>
+                        <td><%= version %></td>
+                        <td><%= User.find(version.whodunnit).email %></td>
+                        <td><%= version.created_at %></td>
+                        <td><%= version.item_type %></td>
+                        <td><%= version.item_id %></td>
+                        <td><%= version.event %></td>
+                        <td><%= version.object %></td>
+                        <td><%= link_to "restore", @book.closed? ? book_chunk_path(@book, @chunk) : restore_version_path(version), :method => :post %></td>
+                      </tr>
+                      </tr>
+
+                  <% end %>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+      <% else %>
+
+      <% end %>
+
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.row -->
+
+  <ul class="pager">
+    <%= link_to 'Back', book_chunk_path(@book, @chunk), :class => "btn btn-primary" %>
+  </ul>
+</div>
+</div>
+
+
+
+
+
+
+
+
+

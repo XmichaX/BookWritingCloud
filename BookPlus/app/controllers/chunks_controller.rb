@@ -4,6 +4,24 @@ class ChunksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_book
 
+  def undo
+
+    @chunk_version = Version.find_by_id(params[:id])
+
+    begin
+      if @chunk_version.reify
+        @chunk_version.reify.save
+      else
+        # For undoing the create action
+        @chunk_version.item.destroy
+      end
+      flash[:success] = "Undid that!"
+    rescue
+      flash[:alert] = "Failed undoing the action..."
+    ensure
+      redirect_to book_path
+    end
+  end
 
   # GET /chunks
   # GET /chunks.json
@@ -19,7 +37,6 @@ class ChunksController < ApplicationController
 
   def show
     @chunk = Chunk.find(params[:id])
-
     respond_to do |format|
       format.html { render_check_template }
       format.json { render json: @chunk }
@@ -78,6 +95,11 @@ class ChunksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def chunks_versions
+    @versions = @chunks.versions
+  end
+
 
   private
   def find_book

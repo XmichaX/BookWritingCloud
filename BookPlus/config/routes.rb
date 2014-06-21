@@ -7,6 +7,8 @@ BookPlus::Application.routes.draw do
 
   devise_for :users
 
+  post "versions/:id/restore" => "versions#restore", :as => "restore_version"
+
   # verschachtelte Ressourcen
 
 
