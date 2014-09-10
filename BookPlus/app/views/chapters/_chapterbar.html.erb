@@ -1,0 +1,12 @@
+<%= params %>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="navbar-form navbar-left" role="add">
+	  <% unless @book.closed? %>
+		  <%= link_to "edit", edit_book_chapter_path(@book, @chapter), method: :get, :class => "btn btn-primary" %>
+		  <%= link_to(raw('create new chunk'), new_chapter_chunk_path(@chapter), :class => "btn btn-primary", :data => {:chapter => @chapter}) %>
+	  <% end %>
+	</div>
+  </div>
+</nav>

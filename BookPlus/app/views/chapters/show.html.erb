@@ -1,0 +1,35 @@
+<%= params %>
+<div id="partial-page-wrapper">
+  <div class="row">
+	<div class="col-lg-12">
+	  <div class="page-header">
+		<h1 id="Chapter">Chapter: <%= @chapter.title %></h1>
+	  </div>
+	</div>
+  </div>
+  <!-- /.row -->
+
+  <div class="row">
+	<div class="col-lg-12">
+	  <%= render 'chapters/chapterbar' %>
+	</div>
+  </div>
+  <!-- /.row -->
+
+  <div class="row">
+	<div class="col-lg-12">
+	  <hr class="featurette-divider">
+	  <% if @chapter.has_chunks? %>
+		  <%= render_chunks(@chapter.chunks, @chapter) %>
+	  <% end %>
+	</div>
+	<!-- /.container-fluid -->
+  </div>
+  <!-- /.row -->
+
+
+  <ul class="pager">
+	<%= button_to 'back', book_path(@book), :method => :get, :class => "btn btn-primary" %>
+  </ul>
+
+</div>

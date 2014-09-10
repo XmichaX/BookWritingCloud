@@ -1,0 +1,33 @@
+<div class="row" id="book_tree">
+  <div class="col-lg-12">
+	<% if !@book.nil? %>
+		<li id="book<%= @book.id %>" class="book" data-closed="<%= @book.closed? %>" data-edit_path="<%= edit_book_path(@book) %>" data-new_chunk_path="<%= new_book_chunk_path(@book) %>">
+		  <%= link_to "#{@book.title} (#{@book.edition})", @book %>
+		  <ul>
+			<% if @book.has_chapters? %>
+				<% @book.chapters.each do |chapter| %>
+					<li id="chapter<%= chapter.id %>" class="chapter" data-closed="<%= chapter.book.closed? %>" data-edit_path="<%= edit_chapter_path(chapter) %>" data-new_chapter_path="<%= new_book_chapter_path(@book) %>">
+					  <%= link_to "#{chapter.title}", chapter %>
+					  <ul>
+						<% if chapter.has_chunks? %>
+							<% chapter.chunks.each do |chunk| %>
+								<li id="chunk<%= chunk.id %>" class="chunk" data-delete_path="<%= book_chunk_path(@book, chunk) %>">
+								  <%= link_to chunk.title, @book.closed? ? book_path(@book) : edit_book_chunk_path(@book, chunk) %>
+								</li>
+							<% end %>
+						<% end %>
+					  </ul>
+					</li>
+				<% end %>
+			<% end %>
+			<% @book.chunks.each do |chunk| %>
+				<li id="chunk<%= chunk.id %>" class="chunk" data-delete_path="<%= book_chunk_path(@book, chunk) %>">
+				  <%= link_to chunk.title, @book.closed? ? book_path(@book) : edit_book_chunk_path(@book, chunk) %>
+				</li>
+			<% end %>
+		  </ul>
+		</li>
+	<% end %>
+  </div>
+  <!-- /.col-lg-12 -->
+</div> <!-- /.row -->

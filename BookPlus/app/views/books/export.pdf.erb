@@ -1,45 +1,53 @@
 <div id="partial-page-wrapper">
-
   <div class="col-lg-12">
-    <h1 id="buttons" class="page-header">PDF-Export</h1>
+	<h1 id="buttons" class="page-header">PDF-Export</h1>
 
-    <div class="panel panel-default">
-      <div class="panel-body">
+	<div class="panel panel-default">
+	  <div class="panel-body">
+		<div class="cover">
+		  <p class="title"><%= @book.title %></p>
 
+		  <p class="authors"><%= @book.users_list_real_names %></p>
+		  <br/>
+		  <br/>
 
-        <div class="cover">
-          <p class="title"><%= @book.title %></p>
+		  <p><%= "#{@book.edition}. #{Book.human_attribute_name(:edition)}" %></p>
+		  <% if @book.published? %>
+			  <p><%= "#{I18n.t('views.book.export.published_on')} #{@book.published.to_s}" %></p>
+		  <% end %>
+		</div>
 
-          <p class="authors"><%= @book.users_list_real_names %></p>
+		<div class="chapter">
+		  <h1><%= Book.human_attribute_name(:abstract) %></h1>
 
-          <br/><br/>
+		  <p><%= raw @book.abstract %></p>
+		</div>
 
-          <p><%= "#{@book.edition}. #{Book.human_attribute_name(:edition)}" %></p>
+		<% if @book.has_chapters? %>
+			<% @book.chapters.each do |chapter| %>
+				<div class="chapter">
+				  <h1><%= chapter.title %></h1>
+				</div>
+				<% if chapter.has_chunks? %>
+					<% chapter.chunks.each do |chunk| %>
+						<div class="chunks">
+						  <h1><%= chunk.title %></h1>
+						  <%= raw chunk.content %>
+						</div>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
 
-          <% if @book.published? %>
-              <p><%= "#{I18n.t('views.book.export.published_on')} #{@book.published.to_s}" %></p>
-          <% end %>
-        </div>
-
-        <div class="chapter">
-          <h1><%= Book.human_attribute_name(:abstract) %></h1>
-
-          <p><%= raw @book.abstract %></p>
-        </div>
-
-        <% if @book.has_chunks? %>
-            <% @book.chunks.each do |chunk| %>
-                <div class="chapter">
-                  <h1><%= chunk.title %></h1>
-                  <%= raw chunk.content %>
-                </div>
-            <% end %>
-        <% end %>
-
-
-      </div>
-    </div>
-
+		<% if @book.has_chunks? %>
+			<% @book.chunks.each do |chunk| %>
+				<div class="chunks">
+				  <h1><%= chunk.title %></h1>
+				  <%= raw chunk.content %>
+				</div>
+			<% end %>
+		<% end %>
+	  </div>
+	</div>
   </div>
-
 </div>

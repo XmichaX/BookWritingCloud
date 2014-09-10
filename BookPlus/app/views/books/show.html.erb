@@ -1,76 +1,75 @@
+<%= params %>
 <div id="partial-page-wrapper">
 
-
   <div class="row">
-    <div class="col-lg-12">
-      <div class="page-header">
-        <h1 id="Book">Book: <%= @book.title %></h1>
-        <%= params %> <br>
-      </div>
-    </div>
+	<div class="col-lg-12">
+	  <div class="page-header">
+		<h1 id="Book">Book: <%= @book.title %></h1>
+	  </div>
+	</div>
+  </div>
+  <!-- /.row -->
+
+  <div class="col-lg-12 text-left">
+	<h1>Details</h1>
+
+	<div class="row">
+	  <div class="col-lg-12">
+		<%= render 'books/bookbar' %>
+	  </div>
+	</div>
+	<!-- /.row -->
+
+	<div class="row">
+	  <div class="col-lg-12">
+		<p>
+		  <b><%= Book.human_attribute_name(:edition) %>:</b>
+		  <%= @book.edition %>
+		</p>
+
+		<% if @book.published? %>
+			<p>
+			  <b><%= Book.human_attribute_name(:published) %>:</b>
+			  <%= @book.published %>
+			</p>
+		<% end %>
+
+		<p>
+		  <b><%= Book.human_attribute_name(:genre) %>:</b>
+		  <%= @book.genre %>
+		</p>
+
+		<p>
+		  <b><%= Book.human_attribute_name(:tags) %>:</b>
+		  <%= @book.tags %>
+		</p>
+
+		<p>
+		  <b><%= Book.human_attribute_name(:users) %>:</b>
+		  <%= @book.users_list_real_names %>
+		</p>
+	  </div>
+
+	  <hr class="featurette-divider">
+	  <%= render partial: 'shared/book_tree', :locals => {:books => user_books} %>
+	  <hr class="featurette-divider">
+	  <%= render partial: 'shared/chapters', :locals => {:book => @book} %>
+	  <hr class="featurette-divider">
+	  <% if @book.has_chunks? %>
+		  <%= render_chunks(@book.chunks, @book) %>
+	  <% end %>
+
+	</div>
+	<!-- /.col-lg-12-->
   </div>
   <!-- /.row -->
 
 
-  <div class="col-lg-12 text-left">
-    <%= render partial: 'shared/chunks_tree', :locals => {:books => user_books} %>
-  </div>
+  <ul class="pager">
+	<%= link_to 'Back', books_path, :class => "btn btn-primary" %>
+  </ul>
 
-
-  <div class="col-lg-12 text-left">
-      <h1>Details</h1>
-
-      <div class="row">
-        <div class="col-lg-12">
-          <%= render 'books/bookbar' %>
-        </div>
-      </div>
-    <!-- /.row -->
-
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="container-fluid">
-          <p>
-            <b><%= Book.human_attribute_name(:edition) %>:</b>
-            <%= @book.edition %>
-          </p>
-
-          <% if @book.published? %>
-              <p>
-                <b><%= Book.human_attribute_name(:published) %>:</b>
-                <%= @book.published %>
-              </p>
-          <% end %>
-
-          <p>
-            <b><%= Book.human_attribute_name(:genre) %>:</b>
-            <%= @book.genre %>
-          </p>
-
-          <p>
-            <b><%= Book.human_attribute_name(:tags) %>:</b>
-            <%= @book.tags %>
-          </p>
-
-          <p>
-            <b><%= Book.human_attribute_name(:users) %>:</b>
-            <%= @book.users_list_real_names %>
-          </p>
-
-            <%= render partial: 'shared/chunks_versions', :locals => {:book => @book} %>
-          </div>
-          <!-- /.container-fluid -->
-        </div>
-        <!-- /.row -->
-
-
-        <ul class="pager">
-          <%= link_to 'Back', books_path, :class => "btn btn-primary" %>
-        </ul>
-      </div>
-  </div>
-
-
+</div>
 </div>
 
 

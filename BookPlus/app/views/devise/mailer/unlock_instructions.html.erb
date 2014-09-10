@@ -1,7 +1,22 @@
-<p>Hello <%= @resource.email %>!</p>
+<%= params %>
+<div id="partial-page-wrapper">
+  <div class="col-lg-12">
+	<h1 id="buttons" class="page-header">Hello <%= @resource.email %>!</h1>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+	<div class="panel panel-default">
+	  <div class="panel-body">
+		<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
 
-<p>Click the link below to unlock your account:</p>
+		<p>Click the link below to unlock your account:</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+		<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token), :class => "btn btn-primary" %></p>
+
+	  </div>
+	</div>
+
+	<ul class="pager">
+	</ul>
+  </div>
+</div>
+
+

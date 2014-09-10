@@ -1,23 +1,22 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-
-
-    <div class="navbar-form navbar-left" role="add">
-
-      <% unless @book.closed? %>
-          <%= link_to "edit", edit_book_path(@book), method: :get, :class => "btn btn-primary" %>
-          <%= link_to "close", close_book_path(@book), data: {confirm: I18n.t('views.book.close.sure')}, :class => "btn btn-primary" %>
-      <% end %>
-      <%= link_to "new edition", new_edition_book_path(@book), method: :get, :class => "btn btn-primary" %>
-      <%= link_to "export pdf", export_book_path(@book, :format => 'pdf'), method: "get", :class => "btn btn-primary" %>
-      <%= link_to "delete", @book, method: :delete, data: {confirm: I18n.t('views.are_you_sure')}, :class => "btn btn-primary" %>
-
-    </div>
-  </div>
-
-
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="navbar-form navbar-left" role="edit">
+	  <% unless @book.closed? %>
+		  <%= link_to "edit", edit_book_path(@book), method: :get, :class => "btn btn-primary" %>
+		  <%= link_to "finished", close_book_path(@book), data: {confirm: I18n.t('views.book.close.sure')}, :class => "btn btn-primary" %>
+	  <% end %>
+	</div>
+	<div class="navbar-form navbar-left" role="create">
+	  <% unless @book.closed? %>
+		  <%= link_to(raw('create new chapter'), new_book_chapter_path(@book), :class => "btn btn-primary", :data => {:book => @book}) %>
+		  <%= link_to(raw('create new chunk'), new_book_chunk_path(@book), :class => "btn btn-primary") %>
+	  <% end %>
+	</div>
+	<div class="navbar-form navbar-left" role="extras">
+	  <%= link_to "new edition", new_edition_book_path(@book), method: :get, :class => "btn btn-primary" %>
+	  <%= link_to "export pdf", export_book_path(@book, :format => 'pdf'), method: "get", :class => "btn btn-primary" %>
+	  <%= link_to "delete", @book, method: :delete, data: {confirm: I18n.t('views.are_you_sure')}, :class => "btn btn-primary" %>
+	</div>
   </div>
 </nav>

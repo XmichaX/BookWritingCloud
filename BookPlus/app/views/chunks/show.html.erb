@@ -1,71 +1,63 @@
+<%= params %>
 <div id="partial-page-wrapper">
-
-
   <div class="row">
-    <div class="col-lg-12">
-      <div class="page-header">
-        <h1 id="Chunk">Chunk: <%= @chunk.title %></h1>
-      </div>
-    </div>
+	<div class="col-lg-12">
+	  <div class="page-header">
+		<h1 id="Chunk">Chunk: <%= @chunk.title %></h1>
+	  </div>
+	</div>
   </div>
   <!-- /.row -->
 
 
   <div class="row">
-    <div class="col-lg-12">
-      <% if @book.has_chunks? %>
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped tablesorter">
-              <thead>
-              <tr>
-                <th> id</th>
-                <th> version</th>
-                <th> user</th>
-                <th> create at</th>
-                <th> item_type</th>
-                <th> item_id</th>
-                <th> event</th>
-                <th> object</th>
-                <th> restore</th>
-              </tr>
-              </thead>
-              <tbody>
-
-              <% if !@chunk.versions.nil? %>
-                  <% @chunk.versions.scoped.each do |version| %>
-                      <tr>
-                        <td><%= version.id %></td>
-                        <td><%= version %></td>
-                        <td><%= User.find(version.whodunnit).email %></td>
-                        <td><%= version.created_at %></td>
-                        <td><%= version.item_type %></td>
-                        <td><%= version.item_id %></td>
-                        <td><%= version.event %></td>
-                        <td><%= version.object %></td>
-                        <td><%= link_to "restore", @book.closed? ? book_chunk_path(@book, @chunk) : restore_version_path(version), :method => :post %></td>
-                      </tr>
-                      </tr>
-
-                  <% end %>
-              <% end %>
-              </tbody>
-            </table>
-          </div>
-
-      <% else %>
-
-      <% end %>
-
-    </div>
-    <!-- /.container-fluid -->
+	<div class="col-lg-12">
+	  <%= render 'chunks/chunkbar' %>
+	  <% if @context.has_chunks? %>
+		  <div class="table-responsive">
+			<table class="table table-bordered table-hover table-striped tablesorter">
+			  <thead>
+			  <tr>
+				<th> id</th>
+				<th> user</th>
+				<th> create at</th>
+				<th> item_type</th>
+				<th> item_id</th>
+				<th> event</th>
+				<th> object</th>
+				<th> change</th>
+				<th> restore</th>
+			  </tr>
+			  </thead>
+			  <tbody>
+			  <% if !@chunk.versions.nil? %>
+				  <% version = @chunk.versions.scoped.last %>
+				  <tr>
+					<td><%= version.id %></td>
+					<td><%= User.find(version.whodunnit).email %></td>
+					<td><%= version.created_at %></td>
+					<td><%= version.item_type %></td>
+					<td><%= version.item_id %></td>
+					<td><%= version.event %></td>
+					<td><%= version.object %></td>
+					<td><%= version.object_changes %></td>
+					<td><%= link_to "restore", restore_version_path(version), :method => :post %></td>
+				  </tr>
+			  <% end %>
+			  </tbody>
+			</table>
+		  </div>
+		  <!-- /.table-responsive -->
+	  <% end %>
+	</div>
+	<!-- /.col-lg-12-->
   </div>
   <!-- /.row -->
 
   <ul class="pager">
-    <%= link_to 'Back', book_chunk_path(@book, @chunk), :class => "btn btn-primary" %>
   </ul>
-</div>
-</div>
+
+</div> <!-- /.partial-page-wrapper-->
 
 
 

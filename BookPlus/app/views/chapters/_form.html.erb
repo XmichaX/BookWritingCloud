@@ -1,0 +1,39 @@
+<%= form_for ([@book, @chapter]) do |f| %>
+	<div class="row">
+	  <div class="col-md-9">
+		<% if @chapter.errors.any? %>
+			<div id="error_explanation">
+			  <h2><%= t 'activerecord.errors.template.header', :model => Chapter.model_name.human, :count => @chapter.errors.count %></h2>
+			  <ul>
+				<% @chapter.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			  </ul>
+			</div>
+		<% end %>
+
+		<div class="field div-left">
+		  <%= f.label :title %>
+		  <br/>
+		  <%= f.text_field :title %>
+		</div>
+
+		<div class="field div-left">
+		  <%= f.label :chapter_number %>
+		  <br/>
+		  <%= f.number_field :chapter_number %>
+		</div>
+		<div class="field">
+		  <%= f.label :description %>
+		  <br/>
+		  <%= f.text_field :description %>
+		</div>
+	  </div>
+	</div>
+
+	<hr class="featurette-divider">
+
+	<div class="actions">
+	  <%= f.submit :class => "btn btn-primary" %>
+	</div>
+<% end %>

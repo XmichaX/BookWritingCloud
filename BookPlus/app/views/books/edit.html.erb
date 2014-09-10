@@ -1,6 +1,14 @@
-<h1>Editing book</h1>
+<div id="partial-page-wrapper">
+  <div class="col-lg-12">
+	<h1 id="buttons" class="page-header">Edit book</h1>
 
-<%= render 'form_new' %>
-
-<%= link_to 'Show', @book %> |
-<%= link_to 'Back', books_path %>
+	<div class="panel panel-default">
+	  <div class="panel-body">
+		<%= render "books/form_edit" %>
+	  </div>
+	</div>
+	<ul class="pager">
+	  <%= button_to 'back', book_path(@book), :method => :get, :class => "btn btn-primary" %>
+	</ul>
+  </div>
+</div>

@@ -11,9 +11,11 @@ gem 'sqlite3'
 gem "ckeditor" # WYSIWYG-Editor
 gem 'paper_trail', '~> 2' # Wird von Paperclip (s.u.) benötigt
 gem 'paperclip', '~> 3.0' # Versionierung
+gem 'differ'
 gem 'devise', '~> 3.2.4' # Benutzermanagement
 gem 'strong_parameters'
 gem 'jstree-rails', :git => 'git://github.com/tristanm/jstree-rails.git'
+gem 'jquery-datatables-rails', '~> 2.2.3'
 
 gem 'rails-i18n' # Internationalisierung für rails
 gem 'devise-i18n' # Internationalisierung für devise
@@ -21,20 +23,33 @@ gem 'devise-i18n-views' # Internationalisierte devise-Views
 gem 'wkhtmltopdf-binary' # PDF-Generierung aus HTML-Daten
 gem 'wicked_pdf' # PDF-Export
 
+
+group :development do
+
+	# memory usage analyse
+	gem "hodel_3000_compliant_logger"
+	gem "oink"
+
+	#notify you when you should add eager loading (N+1 queries), when you're using eager loading that isn't necessary and when you should use counter cache.
+	gem "ruby_gntp"
+	gem "uniform_notifier"
+	gem "bullet"
+end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+	gem 'sass-rails', '~> 3.2.3'
+	gem 'coffee-rails', '~> 3.2.1'
 
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+	# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+	# gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+	gem 'uglifier', '>= 1.0.3'
 end
 
 
+#Unobtrusive scripting adapter for jQuery
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

@@ -1,71 +1,67 @@
 <%= form_for(@book) do |f| %>
-    <%= params %> <br>
-    <div class="row">
-      <div class="col-md-9">
-        <div class="field div-left">
-          <%= f.label :title %>
-          <br/>
-          <%= f.text_field :title %>
-        </div>
+	<div class="row">
+	  <div class="col-md-9">
+		<div class="field div-left">
+		  <%= f.label :title %>
+		  <br/>
+		  <%= f.text_field :title %>
+		</div>
 
-        <div class="field div-left">
-          <%= f.label :genre %>
-          <br/>
-          <%= f.text_field :genre %>
-        </div>
+		<div class="field div-left">
+		  <%= f.label :genre %>
+		  <br/>
+		  <%= f.text_field :genre %>
+		</div>
 
-        <div class="field">
-          <%= f.label :edition %>
-          <br/>
-          <%= f.number_field :edition %>
-        </div>
+		<div class="field">
+		  <%= f.label :edition %>
+		  <br/>
+		  <%= f.number_field :edition %>
+		</div>
 
-        <hr class="featurette-divider">
+		<hr class="featurette-divider">
 
-        <div class="field div-left">
-          <%= f.label :tags %>
-          <br/>
-          <%= f.text_field :tags %>
-        </div>
+		<div class="field div-left">
+		  <%= f.label :tags %>
+		  <br/>
+		  <%= f.text_field :tags %>
+		</div>
 
-        <div class="field">
-          <%= f.label :published %>
-          <br/>
-          <%= f.date_select :published %>
-        </div>
+		<div class="field">
+		  <%= f.label :published %>
+		  <br/>
+		  <%= f.date_select :published %>
+		</div>
 
-        <hr class="featurette-divider">
+		<hr class="featurette-divider">
 
-        <div class="field">
-          <%= f.label :abstract %>
-          <br/>
-          <%= f.cktext_area :abstract %>
-        </div>
-      </div>
+		<div class="field">
+		  <%= f.label :abstract %>
+		  <br/>
+		  <%= f.cktext_area :abstract %>
+		</div>
+	  </div>
 
-      <div class="col-md-3">
-        <div class="field">
-          <%= f.label :users %>
-          <br/>
+	  <div class="col-md-3">
+		<div class="field">
+		  <%= f.label :users %>
+		  <% @users.each do |user| %>
+			  <div>
+				<%= check_box_tag "book[user_ids][]", user.id, (user == current_user) %>
+				<%= user.email %>
+			  </div>
+		  <% end %>
+		</div>
+	  </div>
+	</div>
 
-          <% @users.each do |user| %>
-              <div>
-                <%= check_box_tag "book[user_ids][]", user.id, @book.users.include?(user) %>
-                <%= user.email %>
-              </div>
-          <% end %>
+	<hr class="featurette-divider">
 
-        </div>
-      </div>
+	<div class="actions">
+	  <%= link_to "Back", books_path, method: "get", :class => "btn btn-primary" %>
+	  <%= f.submit :class => "btn btn-primary" %>
+	</div>
 
-
-    </div>
-    <hr class="featurette-divider">
-
-    <div class="actions">
-      <%= link_to "Back", books_path, method: "get", :class => "btn btn-primary" %>
-      <%= f.submit :class => "btn btn-primary" %>
-    </div>
 <% end %>
 
 

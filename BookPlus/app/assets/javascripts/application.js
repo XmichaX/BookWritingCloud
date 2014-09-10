@@ -10,7 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-
 //= require jquery
 //= require jquery_ujs
 //= require jstree
@@ -18,3 +17,25 @@
 //= require bootstrap.min
 //= require_tree .
 
+
+$(function () {
+	$('#table').searchable({
+		striped: true,
+		oddRow: { 'background-color': '#f5f5f5' },
+		evenRow: { 'background-color': '#fff' },
+		searchType: 'fuzzy'
+
+	});
+	console.log("test");
+	$('#searchable-container').searchable({
+		searchField: '#container-search',
+		selector: '.row',
+		childSelector: '.col-xs-4',
+		show: function (elem) {
+			elem.slideDown(100);
+		},
+		hide: function (elem) {
+			elem.slideUp(100);
+		}
+	})
+});
